@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 30px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            color: #2563eb;
+            font-size: 28px;
+        }
+
+        .table-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1000px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #eff6ff;
+            color: #1e40af;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .staff-id {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        @media(max-width: 700px) {
+            body {
+                padding: 15px;
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="{% url 'home' %}" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+    <h1>Teachers Management</h1>
+    <p class="subtitle">View all teacher information and details</p>
+
+    <!-- SUMMARY CARDS -->
+
+    <div class="summary">
+
+        <div class="card">
+            <h3>Total Teachers</h3>
+            <h2>{{ total_teachers }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Teaching Staffs</h3>
+            <h2>{{ total_teachers }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Teacher Records</h3>
+            <h2>{{ total_teachers }}</h2>
+        </div>
+
+    </div>
+
+    <!-- TEACHERS TABLE -->
+
+    <div class="table-box">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Staff ID</th>
+                    <th>Teacher Name</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Qualification</th>
+                    <th>Phone</th>
+                    <th>Home Address</th>
+                    <th>Salary</th>
+                    <th>Classroom</th>
+                    <th>Joining Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for staff in staffs %}
+
+                <tr>
+                    <td class="staff-id">
+                        {{ staff.staff_id }}
+                    </td>
+
+                    <td>{{ staff.staff_name }}</td>
+                    <td>{{ staff.designation }}</td>
+                    <td>{{ staff.department }}</td>
+                    <td>{{ staff.qualification }}</td>
+                    <td>{{ staff.phone }}</td>
+                    <td>{{ staff.address|default:"Not Added" }}</td>
+                    <td>{{ staff.salary }}</td>
+                    <td>{{ staff.classroom|default:"Not Assigned" }}</td>
+                    <td>{{ staff.joining_date|default:"-" }}</td>
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="10" class="empty">
+                        No teacher records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

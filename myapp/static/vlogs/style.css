@@ -1,0 +1,191 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f5fa;
+    color: #263238;
+}
+
+header {
+    background: #142c4e;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #ffc107;
+}
+
+.hero {
+    background: linear-gradient(120deg, #1768a5, #142c4e);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    margin: 10px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 35px 7%;
+}
+
+.stat-card {
+    background: white;
+    padding: 28px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000012;
+    border-bottom: 4px solid #1685c5;
+}
+
+.stat-card h2 {
+    font-size: 35px;
+    color: #1768a5;
+}
+
+.stat-card p {
+    margin-top: 10px;
+    color: #666;
+}
+
+.section-title {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 28px;
+    color: #142c4e;
+}
+
+.class-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 7% 50px;
+}
+
+.class-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000012;
+    overflow: hidden;
+}
+
+.class-heading {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: white;
+    transition: 0.3s;
+}
+
+.class-heading:hover {
+    background: #e5f2ff;
+}
+
+.class-heading h3 {
+    color: #1768a5;
+    margin-bottom: 8px;
+}
+
+.class-heading p {
+    color: #555;
+}
+
+.arrow {
+    color: #1768a5;
+    transition: transform 0.3s;
+}
+
+.class-card.active .arrow {
+    transform: rotate(180deg);
+}
+
+.details {
+    display: none;
+    padding: 20px;
+    background: #f8fbff;
+    border-top: 1px solid #ddd;
+}
+
+.class-card.active .details {
+    display: block;
+}
+
+.details h4 {
+    color: #1768a5;
+    margin-bottom: 12px;
+}
+
+.details p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.details hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+footer {
+    background: #142c4e;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    line-height: 1.8;
+}
+
+@media(max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .class-container {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 8px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+}

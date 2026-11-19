@@ -1,0 +1,125 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Classroom</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0001;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            text-align: center;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #1e40af;
+            color: white;
+        }
+
+        .message {
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Classroom</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'add_classroom' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Classroom</button>
+    </form>
+
+    <h2>Classroom Details</h2>
+
+    <table>
+        <tr>
+            <th>Room Name</th>
+            <th>Room Type</th>
+            <th>Students</th>
+            <th>Teacher</th>
+        </tr>
+
+        {% for room in classrooms %}
+        <tr>
+            <td>{{ room.room_name }}</td>
+            <td>{{ room.get_room_type_display }}</td>
+            <td>{{ room.student_count }}</td>
+            <td>{{ room.teacher_name }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No classrooms added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
+```
